@@ -238,12 +238,287 @@ class Ui_MainWindow(object):
         self.mainScreens.addWidget(self.dashboardScreen)
         self.transactionScreen = QtWidgets.QWidget()
         self.transactionScreen.setObjectName("transactionScreen")
+        self.transactionStackedWidget = QtWidgets.QStackedWidget(self.transactionScreen)
+        self.transactionStackedWidget.setGeometry(QtCore.QRect(0, 0, 771, 501))
+        self.transactionStackedWidget.setObjectName("transactionStackedWidget")
+        self.viewTransactions = QtWidgets.QWidget()
+        self.viewTransactions.setObjectName("viewTransactions")
+        self.addTransactionButtonFrame = QtWidgets.QFrame(self.viewTransactions)
+        self.addTransactionButtonFrame.setGeometry(QtCore.QRect(-1, 419, 771, 101))
+        self.addTransactionButtonFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.addTransactionButtonFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.addTransactionButtonFrame.setObjectName("addTransactionButtonFrame")
+        self.addTransactionButton = QtWidgets.QPushButton(self.addTransactionButtonFrame)
+        self.addTransactionButton.setGeometry(QtCore.QRect(270, 20, 171, 41))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.addTransactionButton.setFont(font)
+        self.addTransactionButton.setStyleSheet("QPushButton#addTransactionButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(102, 150, 200);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#addTransactionButton{\n"
+"    background-color: rgb(113, 167, 221)\n"
+"}")
+        self.addTransactionButton.setObjectName("addTransactionButton")
+        self.transactionContentFrame = QtWidgets.QFrame(self.viewTransactions)
+        self.transactionContentFrame.setGeometry(QtCore.QRect(0, 110, 771, 311))
+        self.transactionContentFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.transactionContentFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.transactionContentFrame.setObjectName("transactionContentFrame")
+        self.transactionInstanceFrame = QtWidgets.QFrame(self.transactionContentFrame)
+        self.transactionInstanceFrame.setGeometry(QtCore.QRect(30, 20, 701, 51))
+        self.transactionInstanceFrame.setStyleSheet("background-color: rgb(247, 247, 247);\n"
+"border-radius:5px;")
+        self.transactionInstanceFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.transactionInstanceFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.transactionInstanceFrame.setObjectName("transactionInstanceFrame")
+        self.productLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+        self.productLabel.setGeometry(QtCore.QRect(10, 15, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.productLabel.setFont(font)
+        self.productLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.productLabel.setObjectName("productLabel")
+        self.customerLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+        self.customerLabel.setGeometry(QtCore.QRect(230, 15, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.customerLabel.setFont(font)
+        self.customerLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.customerLabel.setObjectName("customerLabel")
+        self.priceLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+        self.priceLabel.setGeometry(QtCore.QRect(490, 15, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.priceLabel.setFont(font)
+        self.priceLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.priceLabel.setObjectName("priceLabel")
+        self.pushButton = QtWidgets.QPushButton(self.transactionInstanceFrame)
+        self.pushButton.setGeometry(QtCore.QRect(620, 12, 31, 31))
+        self.pushButton.setStyleSheet("QPushButton#transactionsButton{\n"
+"    border: 0px solid;\n"
+"}\n"
+"\n"
+"QPushButton:hover#transactionsButton{\n"
+"    \n"
+"}")
+        self.pushButton.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("remove_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon)
+        self.pushButton.setIconSize(QtCore.QSize(22, 22))
+        self.pushButton.setFlat(True)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.transactionInstanceFrame)
+        self.pushButton_2.setGeometry(QtCore.QRect(660, 11, 31, 31))
+        self.pushButton_2.setStyleSheet("QPushButton#transactionsButton{\n"
+"    border: 0px solid;\n"
+"}\n"
+"\n"
+"QPushButton:hover#transactionsButton{\n"
+"    \n"
+"}")
+        self.pushButton_2.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("edit_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_2.setIcon(icon1)
+        self.pushButton_2.setIconSize(QtCore.QSize(22, 22))
+        self.pushButton_2.setFlat(True)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.transactionHeaderFrame = QtWidgets.QFrame(self.viewTransactions)
+        self.transactionHeaderFrame.setGeometry(QtCore.QRect(0, 0, 771, 111))
+        self.transactionHeaderFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.transactionHeaderFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.transactionHeaderFrame.setObjectName("transactionHeaderFrame")
+        self.transactionLabel = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel.setGeometry(QtCore.QRect(40, 20, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.transactionLabel.setFont(font)
+        self.transactionLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel.setObjectName("transactionLabel")
+        self.transactionLabel2 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel2.setGeometry(QtCore.QRect(40, 70, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.transactionLabel2.setFont(font)
+        self.transactionLabel2.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel2.setObjectName("transactionLabel2")
+        self.transactionLabel3 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel3.setGeometry(QtCore.QRect(260, 70, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.transactionLabel3.setFont(font)
+        self.transactionLabel3.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel3.setObjectName("transactionLabel3")
+        self.transactionLabel4 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel4.setGeometry(QtCore.QRect(520, 70, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.transactionLabel4.setFont(font)
+        self.transactionLabel4.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel4.setObjectName("transactionLabel4")
+        self.transactionStackedWidget.addWidget(self.viewTransactions)
+        self.addTransactionPage = QtWidgets.QWidget()
+        self.addTransactionPage.setObjectName("addTransactionPage")
+        self.addTransactionFrame = QtWidgets.QFrame(self.addTransactionPage)
+        self.addTransactionFrame.setGeometry(QtCore.QRect(0, 0, 771, 501))
+        self.addTransactionFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.addTransactionFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.addTransactionFrame.setObjectName("addTransactionFrame")
+        self.addTransactionLabel = QtWidgets.QLabel(self.addTransactionFrame)
+        self.addTransactionLabel.setGeometry(QtCore.QRect(300, 40, 151, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.addTransactionLabel.setFont(font)
+        self.addTransactionLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.addTransactionLabel.setObjectName("addTransactionLabel")
+        self.addProductComboBox = QtWidgets.QComboBox(self.addTransactionFrame)
+        self.addProductComboBox.setGeometry(QtCore.QRect(250, 120, 251, 31))
+        self.addProductComboBox.setCurrentText("")
+        self.addProductComboBox.setObjectName("addProductComboBox")
+        self.addTransactionProductLabel = QtWidgets.QLabel(self.addTransactionFrame)
+        self.addTransactionProductLabel.setGeometry(QtCore.QRect(250, 90, 131, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.addTransactionProductLabel.setFont(font)
+        self.addTransactionProductLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.addTransactionProductLabel.setObjectName("addTransactionProductLabel")
+        self.addTransactionDescInput = QtWidgets.QLineEdit(self.addTransactionFrame)
+        self.addTransactionDescInput.setGeometry(QtCore.QRect(250, 180, 251, 31))
+        self.addTransactionDescInput.setObjectName("addTransactionDescInput")
+        self.addTransactionCustInput = QtWidgets.QLineEdit(self.addTransactionFrame)
+        self.addTransactionCustInput.setGeometry(QtCore.QRect(250, 240, 251, 31))
+        self.addTransactionCustInput.setObjectName("addTransactionCustInput")
+        self.addTransactionPriceInput = QtWidgets.QLineEdit(self.addTransactionFrame)
+        self.addTransactionPriceInput.setGeometry(QtCore.QRect(250, 300, 251, 31))
+        self.addTransactionPriceInput.setObjectName("addTransactionPriceInput")
+        self.addTransactionQuantity = QtWidgets.QSpinBox(self.addTransactionFrame)
+        self.addTransactionQuantity.setGeometry(QtCore.QRect(380, 360, 61, 25))
+        self.addTransactionQuantity.setObjectName("addTransactionQuantity")
+        self.addTransactionQuantityLabel = QtWidgets.QLabel(self.addTransactionFrame)
+        self.addTransactionQuantityLabel.setGeometry(QtCore.QRect(250, 360, 131, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.addTransactionQuantityLabel.setFont(font)
+        self.addTransactionQuantityLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.addTransactionQuantityLabel.setObjectName("addTransactionQuantityLabel")
+        self.addTransactionSaveButton = QtWidgets.QPushButton(self.addTransactionFrame)
+        self.addTransactionSaveButton.setGeometry(QtCore.QRect(250, 420, 111, 41))
+        self.addTransactionSaveButton.setStyleSheet("QPushButton#addTransactionSaveButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(102, 150, 200);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#addTransactionSaveButton{\n"
+"    background-color: rgb(113, 167, 221)\n"
+"}")
+        self.addTransactionSaveButton.setObjectName("addTransactionSaveButton")
+        self.addTransactionCancelButton = QtWidgets.QPushButton(self.addTransactionFrame)
+        self.addTransactionCancelButton.setGeometry(QtCore.QRect(395, 420, 111, 41))
+        self.addTransactionCancelButton.setStyleSheet("QPushButton#addTransactionCancelButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(255, 123, 79);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#addTransactionCancelButton{\n"
+"    background-color: rgb(255, 119, 65);\n"
+"}")
+        self.addTransactionCancelButton.setObjectName("addTransactionCancelButton")
+        self.transactionStackedWidget.addWidget(self.addTransactionPage)
+        self.editTransactionPage = QtWidgets.QWidget()
+        self.editTransactionPage.setObjectName("editTransactionPage")
+        self.editTransactionFrame = QtWidgets.QFrame(self.editTransactionPage)
+        self.editTransactionFrame.setGeometry(QtCore.QRect(0, -10, 771, 501))
+        self.editTransactionFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.editTransactionFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.editTransactionFrame.setObjectName("editTransactionFrame")
+        self.editProductComboBox = QtWidgets.QComboBox(self.editTransactionFrame)
+        self.editProductComboBox.setGeometry(QtCore.QRect(240, 120, 251, 31))
+        self.editProductComboBox.setCurrentText("")
+        self.editProductComboBox.setObjectName("editProductComboBox")
+        self.editTransactionCustInput = QtWidgets.QLineEdit(self.editTransactionFrame)
+        self.editTransactionCustInput.setGeometry(QtCore.QRect(240, 240, 251, 31))
+        self.editTransactionCustInput.setObjectName("editTransactionCustInput")
+        self.editTransactionQuantity = QtWidgets.QSpinBox(self.editTransactionFrame)
+        self.editTransactionQuantity.setGeometry(QtCore.QRect(370, 360, 61, 25))
+        self.editTransactionQuantity.setObjectName("editTransactionQuantity")
+        self.editTransactionProductLabel = QtWidgets.QLabel(self.editTransactionFrame)
+        self.editTransactionProductLabel.setGeometry(QtCore.QRect(240, 90, 131, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.editTransactionProductLabel.setFont(font)
+        self.editTransactionProductLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.editTransactionProductLabel.setObjectName("editTransactionProductLabel")
+        self.editTransactionDescInput = QtWidgets.QLineEdit(self.editTransactionFrame)
+        self.editTransactionDescInput.setGeometry(QtCore.QRect(240, 180, 251, 31))
+        self.editTransactionDescInput.setObjectName("editTransactionDescInput")
+        self.editTransactionQuantityLabel = QtWidgets.QLabel(self.editTransactionFrame)
+        self.editTransactionQuantityLabel.setGeometry(QtCore.QRect(240, 360, 131, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.editTransactionQuantityLabel.setFont(font)
+        self.editTransactionQuantityLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.editTransactionQuantityLabel.setObjectName("editTransactionQuantityLabel")
+        self.editTransactionPriceInput = QtWidgets.QLineEdit(self.editTransactionFrame)
+        self.editTransactionPriceInput.setGeometry(QtCore.QRect(240, 300, 251, 31))
+        self.editTransactionPriceInput.setObjectName("editTransactionPriceInput")
+        self.editTransactionUpdateButton = QtWidgets.QPushButton(self.editTransactionFrame)
+        self.editTransactionUpdateButton.setGeometry(QtCore.QRect(240, 420, 111, 41))
+        self.editTransactionUpdateButton.setStyleSheet("QPushButton#editTransactionUpdateButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(102, 150, 200);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#editTransactionUpdateButton{\n"
+"    background-color: rgb(113, 167, 221)\n"
+"}")
+        self.editTransactionUpdateButton.setObjectName("editTransactionUpdateButton")
+        self.editTransactionCancelButton = QtWidgets.QPushButton(self.editTransactionFrame)
+        self.editTransactionCancelButton.setGeometry(QtCore.QRect(385, 420, 111, 41))
+        self.editTransactionCancelButton.setStyleSheet("QPushButton#editTransactionCancelButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(255, 123, 79);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#editTransactionCancelButton{\n"
+"    background-color: rgb(255, 119, 65);\n"
+"}")
+        self.editTransactionCancelButton.setObjectName("editTransactionCancelButton")
+        self.editTransactionLabel = QtWidgets.QLabel(self.editTransactionFrame)
+        self.editTransactionLabel.setGeometry(QtCore.QRect(300, 40, 151, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.editTransactionLabel.setFont(font)
+        self.editTransactionLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.editTransactionLabel.setObjectName("editTransactionLabel")
+        self.transactionStackedWidget.addWidget(self.editTransactionPage)
         self.mainScreens.addWidget(self.transactionScreen)
         self.stackedWidget.addWidget(self.mainPage)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
+        self.mainScreens.setCurrentIndex(1)
+        self.transactionStackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -262,6 +537,30 @@ class Ui_MainWindow(object):
         self.dashboardButton.setText(_translate("MainWindow", "Dashboard"))
         self.transactionsButton.setText(_translate("MainWindow", "Transactions"))
         self.sideMenuLabel.setText(_translate("MainWindow", "Menu"))
+        self.addTransactionButton.setText(_translate("MainWindow", "Add Transaction"))
+        self.productLabel.setText(_translate("MainWindow", "Tshirt Print"))
+        self.customerLabel.setText(_translate("MainWindow", "Kevin Heart"))
+        self.priceLabel.setText(_translate("MainWindow", "500"))
+        self.transactionLabel.setText(_translate("MainWindow", "Transactions"))
+        self.transactionLabel2.setText(_translate("MainWindow", "Product"))
+        self.transactionLabel3.setText(_translate("MainWindow", "Customer"))
+        self.transactionLabel4.setText(_translate("MainWindow", "Price"))
+        self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
+        self.addTransactionProductLabel.setText(_translate("MainWindow", "Product"))
+        self.addTransactionDescInput.setPlaceholderText(_translate("MainWindow", " Description"))
+        self.addTransactionCustInput.setPlaceholderText(_translate("MainWindow", " Customer"))
+        self.addTransactionPriceInput.setPlaceholderText(_translate("MainWindow", " Unit Price"))
+        self.addTransactionQuantityLabel.setText(_translate("MainWindow", "Quantity"))
+        self.addTransactionSaveButton.setText(_translate("MainWindow", "Save"))
+        self.addTransactionCancelButton.setText(_translate("MainWindow", "Cancel"))
+        self.editTransactionCustInput.setPlaceholderText(_translate("MainWindow", " Customer"))
+        self.editTransactionProductLabel.setText(_translate("MainWindow", "Product"))
+        self.editTransactionDescInput.setPlaceholderText(_translate("MainWindow", " Description"))
+        self.editTransactionQuantityLabel.setText(_translate("MainWindow", "Quantity"))
+        self.editTransactionPriceInput.setPlaceholderText(_translate("MainWindow", " Unit Price"))
+        self.editTransactionUpdateButton.setText(_translate("MainWindow", "Update"))
+        self.editTransactionCancelButton.setText(_translate("MainWindow", "Cancel"))
+        self.editTransactionLabel.setText(_translate("MainWindow", "Edit Transaction"))
 
 
 if __name__ == "__main__":
