@@ -614,7 +614,7 @@ QPushButton:hover#transactionsButton{
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="dashboardScreen">
          <property name="styleSheet">
@@ -632,7 +632,7 @@ QPushButton:hover#transactionsButton{
            </rect>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="viewTransactions">
            <widget class="QFrame" name="addTransactionButtonFrame">
@@ -1002,8 +1002,33 @@ QPushButton:hover#transactionsButton{
               </rect>
              </property>
              <property name="currentText">
-              <string/>
+              <string>Tarpaulin Printing</string>
              </property>
+             <item>
+              <property name="text">
+               <string>Tarpaulin Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sticker</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Shirt Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mug Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ID Printing</string>
+              </property>
+             </item>
             </widget>
             <widget class="QLabel" name="addTransactionProductLabel">
              <property name="geometry">
@@ -1174,8 +1199,33 @@ QPushButton:hover#addTransactionCancelButton{
               </rect>
              </property>
              <property name="currentText">
-              <string/>
+              <string>Tarpaulin Printing</string>
              </property>
+             <item>
+              <property name="text">
+               <string>Tarpaulin Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sticker</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Shirt Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Mug Printing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ID Printing</string>
+              </property>
+             </item>
             </widget>
             <widget class="QLineEdit" name="editTransactionCustInput">
              <property name="geometry">

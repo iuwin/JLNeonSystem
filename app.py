@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from dbconnection import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -383,8 +383,12 @@ class Ui_MainWindow(object):
         self.addTransactionLabel.setObjectName("addTransactionLabel")
         self.addProductComboBox = QtWidgets.QComboBox(self.addTransactionFrame)
         self.addProductComboBox.setGeometry(QtCore.QRect(250, 120, 251, 31))
-        self.addProductComboBox.setCurrentText("")
         self.addProductComboBox.setObjectName("addProductComboBox")
+        self.addProductComboBox.addItem("")
+        self.addProductComboBox.addItem("")
+        self.addProductComboBox.addItem("")
+        self.addProductComboBox.addItem("")
+        self.addProductComboBox.addItem("")
         self.addTransactionProductLabel = QtWidgets.QLabel(self.addTransactionFrame)
         self.addTransactionProductLabel.setGeometry(QtCore.QRect(250, 90, 131, 21))
         font = QtGui.QFont()
@@ -447,8 +451,12 @@ class Ui_MainWindow(object):
         self.editTransactionFrame.setObjectName("editTransactionFrame")
         self.editProductComboBox = QtWidgets.QComboBox(self.editTransactionFrame)
         self.editProductComboBox.setGeometry(QtCore.QRect(240, 120, 251, 31))
-        self.editProductComboBox.setCurrentText("")
         self.editProductComboBox.setObjectName("editProductComboBox")
+        self.editProductComboBox.addItem("")
+        self.editProductComboBox.addItem("")
+        self.editProductComboBox.addItem("")
+        self.editProductComboBox.addItem("")
+        self.editProductComboBox.addItem("")
         self.editTransactionCustInput = QtWidgets.QLineEdit(self.editTransactionFrame)
         self.editTransactionCustInput.setGeometry(QtCore.QRect(240, 240, 251, 31))
         self.editTransactionCustInput.setObjectName("editTransactionCustInput")
@@ -517,9 +525,71 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
-        self.mainScreens.setCurrentIndex(1)
-        self.transactionStackedWidget.setCurrentIndex(1)
+        self.mainScreens.setCurrentIndex(0)
+        self.transactionStackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+
+        ####CONNECT TO DATABASE
+        DBConnection()
+
+        
+        ###NAVIGATION
+        self.loginButton.clicked.connect(lambda: self.login())
+        self.dashboardButton.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.dashboardScreen))
+        self.transactionsButton.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.transactionScreen))
+        self.addTransactionButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.addTransactionPage))
+        self.pushButton_2.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage))
+        
+        
+        self.addTransactionSaveButton.clicked.connect(lambda: self.addTransaction())
+        self.addTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
+
+        #self.editTransactionUpdateButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
+        self.editTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
+
+    def login(self):
+        try:
+             username = self.usernameField.text()
+             password = self.passwordField.text()
+
+             db = mdb.connect('localhost', 'root', '', 'jlneon')
+             mycursor = db.cursor()
+             query = "SELECT username, password FROM tbluser WHERE username LIKE '"+username+"' AND password LIKE '"+password+"'"
+             mycursor.execute(query)
+             result = mycursor.fetchone()
+
+             if result == None:
+                  print("Error logging in")
+        
+             else:
+                  self.stackedWidget.setCurrentWidget(self.mainPage)
+        
+        except mdb.Error as e:
+             print("Error")
+
+
+    def addTransaction(self):
+        try:
+             product = self.addProductComboBox.currentText()
+             description = self.addTransactionDescInput.text()
+             customer = self.addTransactionCustInput.text()
+             price = self.addTransactionPriceInput.text()
+             quantity = self.addTransactionQuantity.value()
+
+             db = mdb.connect('localhost', 'root', '', 'jlneon')
+             mycursor = db.cursor()
+             query = "INSERT INTO tblsales(product, description, customer_name, quantity, unitPrice) VALUES (%s,%s,%s,%s,%s)"
+             values = (product, description, customer, quantity, price)        
+             
+             mycursor.execute(query, values)
+             db.commit()
+             print("successfuly added data")
+             self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
+
+
+        except mdb.Error as e:
+             print("Error")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -546,6 +616,12 @@ class Ui_MainWindow(object):
         self.transactionLabel3.setText(_translate("MainWindow", "Customer"))
         self.transactionLabel4.setText(_translate("MainWindow", "Price"))
         self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
+        self.addProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
+        self.addProductComboBox.setItemText(0, _translate("MainWindow", "Tarpaulin Printing"))
+        self.addProductComboBox.setItemText(1, _translate("MainWindow", "Sticker"))
+        self.addProductComboBox.setItemText(2, _translate("MainWindow", "Shirt Printing"))
+        self.addProductComboBox.setItemText(3, _translate("MainWindow", "Mug Printing"))
+        self.addProductComboBox.setItemText(4, _translate("MainWindow", "ID Printing"))
         self.addTransactionProductLabel.setText(_translate("MainWindow", "Product"))
         self.addTransactionDescInput.setPlaceholderText(_translate("MainWindow", " Description"))
         self.addTransactionCustInput.setPlaceholderText(_translate("MainWindow", " Customer"))
@@ -553,6 +629,12 @@ class Ui_MainWindow(object):
         self.addTransactionQuantityLabel.setText(_translate("MainWindow", "Quantity"))
         self.addTransactionSaveButton.setText(_translate("MainWindow", "Save"))
         self.addTransactionCancelButton.setText(_translate("MainWindow", "Cancel"))
+        self.editProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
+        self.editProductComboBox.setItemText(0, _translate("MainWindow", "Tarpaulin Printing"))
+        self.editProductComboBox.setItemText(1, _translate("MainWindow", "Sticker"))
+        self.editProductComboBox.setItemText(2, _translate("MainWindow", "Shirt Printing"))
+        self.editProductComboBox.setItemText(3, _translate("MainWindow", "Mug Printing"))
+        self.editProductComboBox.setItemText(4, _translate("MainWindow", "ID Printing"))
         self.editTransactionCustInput.setPlaceholderText(_translate("MainWindow", " Customer"))
         self.editTransactionProductLabel.setText(_translate("MainWindow", "Product"))
         self.editTransactionDescInput.setPlaceholderText(_translate("MainWindow", " Description"))
