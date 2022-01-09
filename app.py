@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from dbconnection import *
+import MySQLdb as mdb
+import datetime
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -269,66 +271,66 @@ class Ui_MainWindow(object):
         self.transactionContentFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.transactionContentFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.transactionContentFrame.setObjectName("transactionContentFrame")
-        self.transactionInstanceFrame = QtWidgets.QFrame(self.transactionContentFrame)
-        self.transactionInstanceFrame.setGeometry(QtCore.QRect(30, 20, 701, 51))
-        self.transactionInstanceFrame.setStyleSheet("background-color: rgb(247, 247, 247);\n"
-"border-radius:5px;")
-        self.transactionInstanceFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.transactionInstanceFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.transactionInstanceFrame.setObjectName("transactionInstanceFrame")
-        self.productLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
-        self.productLabel.setGeometry(QtCore.QRect(10, 15, 121, 21))
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        self.productLabel.setFont(font)
-        self.productLabel.setStyleSheet("color: rgb(117, 117, 117)")
-        self.productLabel.setObjectName("productLabel")
-        self.customerLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
-        self.customerLabel.setGeometry(QtCore.QRect(230, 15, 121, 21))
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        self.customerLabel.setFont(font)
-        self.customerLabel.setStyleSheet("color: rgb(117, 117, 117)")
-        self.customerLabel.setObjectName("customerLabel")
-        self.priceLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
-        self.priceLabel.setGeometry(QtCore.QRect(490, 15, 121, 21))
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        self.priceLabel.setFont(font)
-        self.priceLabel.setStyleSheet("color: rgb(117, 117, 117)")
-        self.priceLabel.setObjectName("priceLabel")
-        self.pushButton = QtWidgets.QPushButton(self.transactionInstanceFrame)
-        self.pushButton.setGeometry(QtCore.QRect(620, 12, 31, 31))
-        self.pushButton.setStyleSheet("QPushButton#transactionsButton{\n"
-"    border: 0px solid;\n"
-"}\n"
-"\n"
-"QPushButton:hover#transactionsButton{\n"
-"    \n"
-"}")
-        self.pushButton.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("remove_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton.setIcon(icon)
-        self.pushButton.setIconSize(QtCore.QSize(22, 22))
-        self.pushButton.setFlat(True)
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.transactionInstanceFrame)
-        self.pushButton_2.setGeometry(QtCore.QRect(660, 11, 31, 31))
-        self.pushButton_2.setStyleSheet("QPushButton#transactionsButton{\n"
-"    border: 0px solid;\n"
-"}\n"
-"\n"
-"QPushButton:hover#transactionsButton{\n"
-"    \n"
-"}")
-        self.pushButton_2.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("edit_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_2.setIcon(icon1)
-        self.pushButton_2.setIconSize(QtCore.QSize(22, 22))
-        self.pushButton_2.setFlat(True)
-        self.pushButton_2.setObjectName("pushButton_2")
+#         self.transactionInstanceFrame = QtWidgets.QFrame(self.transactionContentFrame)
+#         self.transactionInstanceFrame.setGeometry(QtCore.QRect(30, 20, 701, 51))
+#         self.transactionInstanceFrame.setStyleSheet("background-color: rgb(247, 247, 247);\n"
+# "border-radius:5px;")
+#         self.transactionInstanceFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+#         self.transactionInstanceFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+#         self.transactionInstanceFrame.setObjectName("transactionInstanceFrame")
+#         self.productLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.productLabel.setGeometry(QtCore.QRect(10, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.productLabel.setFont(font)
+#         self.productLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.productLabel.setObjectName("productLabel")
+#         self.customerLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.customerLabel.setGeometry(QtCore.QRect(230, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.customerLabel.setFont(font)
+#         self.customerLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.customerLabel.setObjectName("customerLabel")
+#         self.priceLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.priceLabel.setGeometry(QtCore.QRect(490, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.priceLabel.setFont(font)
+#         self.priceLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.priceLabel.setObjectName("priceLabel")
+#         self.pushButton = QtWidgets.QPushButton(self.transactionInstanceFrame)
+#         self.pushButton.setGeometry(QtCore.QRect(620, 12, 31, 31))
+#         self.pushButton.setStyleSheet("QPushButton#transactionsButton{\n"
+# "    border: 0px solid;\n"
+# "}\n"
+# "\n"
+# "QPushButton:hover#transactionsButton{\n"
+# "    \n"
+# "}")
+#         self.pushButton.setText("")
+#         icon = QtGui.QIcon()
+#         icon.addPixmap(QtGui.QPixmap("remove_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#         self.pushButton.setIcon(icon)
+#         self.pushButton.setIconSize(QtCore.QSize(22, 22))
+#         self.pushButton.setFlat(True)
+#         self.pushButton.setObjectName("pushButton")
+#         self.pushButton_2 = QtWidgets.QPushButton(self.transactionInstanceFrame)
+#         self.pushButton_2.setGeometry(QtCore.QRect(660, 11, 31, 31))
+#         self.pushButton_2.setStyleSheet("QPushButton#transactionsButton{\n"
+# "    border: 0px solid;\n"
+# "}\n"
+# "\n"
+# "QPushButton:hover#transactionsButton{\n"
+# "    \n"
+# "}")
+#         self.pushButton_2.setText("")
+#         icon1 = QtGui.QIcon()
+#         icon1.addPixmap(QtGui.QPixmap("edit_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#         self.pushButton_2.setIcon(icon1)
+#         self.pushButton_2.setIconSize(QtCore.QSize(22, 22))
+#         self.pushButton_2.setFlat(True)
+#         self.pushButton_2.setObjectName("pushButton_2")
         self.transactionHeaderFrame = QtWidgets.QFrame(self.viewTransactions)
         self.transactionHeaderFrame.setGeometry(QtCore.QRect(0, 0, 771, 111))
         self.transactionHeaderFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -530,6 +532,24 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
+
+
+
+
+        ########################################
+        ########################################
+        ########################################
+        ########################################
+        ########################################
+        ########################################
+        ########################################
+        ####### EDITING THE PYTHON FILE ########
+
+        self.db = mdb.connect('localhost', 'root', '', 'jlneon')
+        self.mycursor = self.db.cursor()
+
+        self.user = 0;
+
         ####CONNECT TO DATABASE
         DBConnection()
 
@@ -537,39 +557,63 @@ class Ui_MainWindow(object):
         ###NAVIGATION
         self.loginButton.clicked.connect(lambda: self.login())
         self.dashboardButton.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.dashboardScreen))
-        self.transactionsButton.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.transactionScreen))
+        self.transactionsButton.clicked.connect(lambda: self.retrieveTransactions())
         self.addTransactionButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.addTransactionPage))
-        self.pushButton_2.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage))
+        #self.pushButton_2.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage))
         
         
-        self.addTransactionSaveButton.clicked.connect(lambda: self.addTransaction())
+        self.addTransactionSaveButton.clicked.connect(lambda: self.addSales())
         self.addTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
 
         #self.editTransactionUpdateButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
         self.editTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
 
+
+    #LOGIN 
     def login(self):
         try:
              username = self.usernameField.text()
              password = self.passwordField.text()
 
-             db = mdb.connect('localhost', 'root', '', 'jlneon')
-             mycursor = db.cursor()
-             query = "SELECT username, password FROM tbluser WHERE username LIKE '"+username+"' AND password LIKE '"+password+"'"
-             mycursor.execute(query)
-             result = mycursor.fetchone()
+
+             query = "SELECT userID,username, password FROM tbluser WHERE username LIKE '"+username+"' AND password LIKE '"+password+"'"
+             self.mycursor.execute(query)
+             result = self.mycursor.fetchone()
 
              if result == None:
                   print("Error logging in")
         
              else:
-                  self.stackedWidget.setCurrentWidget(self.mainPage)
+                self.user = result[0]
+                self.stackedWidget.setCurrentWidget(self.mainPage)
         
         except mdb.Error as e:
              print("Error")
 
 
-    def addTransaction(self):
+
+
+    #RETRIEVE TRANSACTION
+    def retrieveTransactions(self):
+        try:
+            self.mainScreens.setCurrentWidget(self.transactionScreen)
+
+            query = "SELECT * FROM tblsales"
+            self.mycursor.execute(query)
+
+            for row in self.mycursor:
+                print(row)
+
+
+        except Exception:
+             print("Error retrieving data")
+
+
+
+
+
+    ##ADD SALES TO DATABASE
+    def addSales(self):
         try:
              product = self.addProductComboBox.currentText()
              description = self.addTransactionDescInput.text()
@@ -577,19 +621,38 @@ class Ui_MainWindow(object):
              price = self.addTransactionPriceInput.text()
              quantity = self.addTransactionQuantity.value()
 
-             db = mdb.connect('localhost', 'root', '', 'jlneon')
-             mycursor = db.cursor()
              query = "INSERT INTO tblsales(product, description, customer_name, quantity, unitPrice) VALUES (%s,%s,%s,%s,%s)"
              values = (product, description, customer, quantity, price)        
              
-             mycursor.execute(query, values)
-             db.commit()
+             self.mycursor.execute(query, values)
+             self.db.commit()
              print("successfuly added data")
+             self.addTransaction(self.mycursor.lastrowid)
              self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
 
 
         except mdb.Error as e:
              print("Error")
+
+
+
+
+    #ADD TRANSACTION TO DATABASE  
+    def addTransaction(self, saleID):
+        try: 
+             current_time = datetime.datetime.now()      
+             query = "INSERT INTO tbltransaction(salesID, userID, date) VALUES (%s,%s,%s)"
+             values = (saleID, self.user, current_time)        
+             
+             self.mycursor.execute(query, values)
+             self.db.commit()
+             print("added to transaction")
+
+        except mdb.Error as e:
+             print("Error")
+
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -608,9 +671,9 @@ class Ui_MainWindow(object):
         self.transactionsButton.setText(_translate("MainWindow", "Transactions"))
         self.sideMenuLabel.setText(_translate("MainWindow", "Menu"))
         self.addTransactionButton.setText(_translate("MainWindow", "Add Transaction"))
-        self.productLabel.setText(_translate("MainWindow", "Tshirt Print"))
-        self.customerLabel.setText(_translate("MainWindow", "Kevin Heart"))
-        self.priceLabel.setText(_translate("MainWindow", "500"))
+        # self.productLabel.setText(_translate("MainWindow", "Tshirt Print"))
+        # self.customerLabel.setText(_translate("MainWindow", "Kevin Heart"))
+        # self.priceLabel.setText(_translate("MainWindow", "500"))
         self.transactionLabel.setText(_translate("MainWindow", "Transactions"))
         self.transactionLabel2.setText(_translate("MainWindow", "Product"))
         self.transactionLabel3.setText(_translate("MainWindow", "Customer"))
