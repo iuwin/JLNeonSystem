@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'app_ui2.ui'
+# Form implementation generated from reading ui file 'app_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -267,71 +267,72 @@ class Ui_MainWindow(object):
 "}")
         self.addTransactionButton.setObjectName("addTransactionButton")
         self.transactionContentFrame = QtWidgets.QFrame(self.viewTransactions)
-        self.transactionContentFrame.setGeometry(QtCore.QRect(0, 100, 771, 321))
+        self.transactionContentFrame.setGeometry(QtCore.QRect(0, 110, 771, 311))
         self.transactionContentFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.transactionContentFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.transactionContentFrame.setObjectName("transactionContentFrame")
-        self.tableWidget = QtWidgets.QTableWidget(self.transactionContentFrame)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 20, 721, 311))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.tableWidget.setFont(font)
-        self.tableWidget.setStyleSheet("tableWidget {\n"
-"  padding: 15px;\n"
-"  text-align: left;\n"
-"}")
-        self.tableWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.tableWidget.setDragEnabled(False)
-        self.tableWidget.setShowGrid(False)
-        self.tableWidget.setGridStyle(QtCore.Qt.SolidLine)
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(6)
-        self.tableWidget.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        self.tableWidget.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        item.setBackground(QtGui.QColor(102, 150, 200))
-        self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        self.tableWidget.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        self.tableWidget.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        font.setPointSize(12)
-        item.setFont(font)
-        self.tableWidget.setHorizontalHeaderItem(5, item)
-        self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableWidget.horizontalHeader().setSortIndicatorShown(False)
-        self.tableWidget.horizontalHeader().setStretchLastSection(True)
-        self.tableWidget.verticalHeader().setSortIndicatorShown(False)
-        self.tableWidget.verticalHeader().setStretchLastSection(False)
+#         self.transactionInstanceFrame = QtWidgets.QFrame(self.transactionContentFrame)
+#         self.transactionInstanceFrame.setGeometry(QtCore.QRect(30, 20, 701, 51))
+#         self.transactionInstanceFrame.setStyleSheet("background-color: rgb(247, 247, 247);\n"
+# "border-radius:5px;")
+#         self.transactionInstanceFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+#         self.transactionInstanceFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+#         self.transactionInstanceFrame.setObjectName("transactionInstanceFrame")
+#         self.productLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.productLabel.setGeometry(QtCore.QRect(10, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.productLabel.setFont(font)
+#         self.productLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.productLabel.setObjectName("productLabel")
+#         self.customerLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.customerLabel.setGeometry(QtCore.QRect(230, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.customerLabel.setFont(font)
+#         self.customerLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.customerLabel.setObjectName("customerLabel")
+#         self.priceLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+#         self.priceLabel.setGeometry(QtCore.QRect(490, 15, 121, 21))
+#         font = QtGui.QFont()
+#         font.setFamily("Verdana")
+#         self.priceLabel.setFont(font)
+#         self.priceLabel.setStyleSheet("color: rgb(117, 117, 117)")
+#         self.priceLabel.setObjectName("priceLabel")
+#         self.pushButton = QtWidgets.QPushButton(self.transactionInstanceFrame)
+#         self.pushButton.setGeometry(QtCore.QRect(620, 12, 31, 31))
+#         self.pushButton.setStyleSheet("QPushButton#transactionsButton{\n"
+# "    border: 0px solid;\n"
+# "}\n"
+# "\n"
+# "QPushButton:hover#transactionsButton{\n"
+# "    \n"
+# "}")
+#         self.pushButton.setText("")
+#         icon = QtGui.QIcon()
+#         icon.addPixmap(QtGui.QPixmap("remove_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#         self.pushButton.setIcon(icon)
+#         self.pushButton.setIconSize(QtCore.QSize(22, 22))
+#         self.pushButton.setFlat(True)
+#         self.pushButton.setObjectName("pushButton")
+#         self.pushButton_2 = QtWidgets.QPushButton(self.transactionInstanceFrame)
+#         self.pushButton_2.setGeometry(QtCore.QRect(660, 11, 31, 31))
+#         self.pushButton_2.setStyleSheet("QPushButton#transactionsButton{\n"
+# "    border: 0px solid;\n"
+# "}\n"
+# "\n"
+# "QPushButton:hover#transactionsButton{\n"
+# "    \n"
+# "}")
+#         self.pushButton_2.setText("")
+#         icon1 = QtGui.QIcon()
+#         icon1.addPixmap(QtGui.QPixmap("edit_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+#         self.pushButton_2.setIcon(icon1)
+#         self.pushButton_2.setIconSize(QtCore.QSize(22, 22))
+#         self.pushButton_2.setFlat(True)
+#         self.pushButton_2.setObjectName("pushButton_2")
         self.transactionHeaderFrame = QtWidgets.QFrame(self.viewTransactions)
-        self.transactionHeaderFrame.setGeometry(QtCore.QRect(0, 0, 771, 101))
+        self.transactionHeaderFrame.setGeometry(QtCore.QRect(0, 0, 771, 111))
         self.transactionHeaderFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.transactionHeaderFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.transactionHeaderFrame.setObjectName("transactionHeaderFrame")
@@ -344,20 +345,27 @@ class Ui_MainWindow(object):
         self.transactionLabel.setFont(font)
         self.transactionLabel.setStyleSheet("color: rgb(117, 117, 117)")
         self.transactionLabel.setObjectName("transactionLabel")
-        self.sortLabel = QtWidgets.QLabel(self.transactionHeaderFrame)
-        self.sortLabel.setGeometry(QtCore.QRect(40, 60, 121, 21))
+        self.transactionLabel2 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel2.setGeometry(QtCore.QRect(40, 70, 121, 21))
         font = QtGui.QFont()
         font.setFamily("Verdana")
-        font.setPointSize(11)
-        font.setBold(True)
-        font.setWeight(75)
-        self.sortLabel.setFont(font)
-        self.sortLabel.setStyleSheet("color: rgb(117, 117, 117)")
-        self.sortLabel.setObjectName("sortLabel")
-        self.sortComboBox = QtWidgets.QComboBox(self.transactionHeaderFrame)
-        self.sortComboBox.setGeometry(QtCore.QRect(130, 60, 101, 25))
-        self.sortComboBox.setObjectName("sortComboBox")
-        self.sortComboBox.addItem("")
+        self.transactionLabel2.setFont(font)
+        self.transactionLabel2.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel2.setObjectName("transactionLabel2")
+        self.transactionLabel3 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel3.setGeometry(QtCore.QRect(260, 70, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.transactionLabel3.setFont(font)
+        self.transactionLabel3.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel3.setObjectName("transactionLabel3")
+        self.transactionLabel4 = QtWidgets.QLabel(self.transactionHeaderFrame)
+        self.transactionLabel4.setGeometry(QtCore.QRect(520, 70, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.transactionLabel4.setFont(font)
+        self.transactionLabel4.setStyleSheet("color: rgb(117, 117, 117)")
+        self.transactionLabel4.setObjectName("transactionLabel4")
         self.transactionStackedWidget.addWidget(self.viewTransactions)
         self.addTransactionPage = QtWidgets.QWidget()
         self.addTransactionPage.setObjectName("addTransactionPage")
@@ -527,6 +535,7 @@ class Ui_MainWindow(object):
 
 
 
+
         ########################################
         ########################################
         ########################################
@@ -556,7 +565,7 @@ class Ui_MainWindow(object):
         self.addTransactionSaveButton.clicked.connect(lambda: self.addSales())
         self.addTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
 
-        
+        #self.editTransactionUpdateButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
         self.editTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
 
 
@@ -595,82 +604,15 @@ class Ui_MainWindow(object):
 
             query = "SELECT * FROM tblsales"
             self.mycursor.execute(query)
-            
-            row = 0
-            rowCount = self.mycursor.rowcount
-            self.tableWidget.setRowCount(rowCount)
-            for data in self.mycursor:
-                 self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
-                 self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
-                 self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
-                 self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
-                 self.btn_sell = QtWidgets.QPushButton('Edit')
-                 self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
-                 self.tableWidget.setCellWidget(row,4,self.btn_sell)
-                 self.btn_remove = QtWidgets.QPushButton('Remove')
-                 self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
-                 self.tableWidget.setCellWidget(row,5,self.btn_remove)            
-                 row = row+1
-                
-            #self.tableWidget.setColumnHidden(0, true)
+
+            for row in self.mycursor:
+                print(row)
 
 
         except Exception:
              print("Error retrieving data")
 
 
-
-    def editHandleButtonClicked(self):
-        button = QtWidgets.qApp.focusWidget()
-        # or button = self.sender()
-        index = self.tableWidget.indexAt(button.pos())
-        if index.isValid():
-            print(index.row(), index.column())
-            print(self.tableWidget.item(index.row(), 0).text())
-            self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage)    
-            self.editTransactionUpdateButton.clicked.connect(lambda: self.editDB(self.tableWidget.item(index.row(), 0).text()))
-
-
-    def removeHandleButtonClicked(self):
-        button = QtWidgets.qApp.focusWidget()
-        # or button = self.sender()
-        index = self.tableWidget.indexAt(button.pos())
-        if index.isValid():
-            print(index.row(), index.column())
-            self.removeDB(self.tableWidget.item(index.row(), 0).text())
-
-
-
-     ##################################
-     #QUERIES
-     ##################################  
-
-    def removeDB(self, id):
-          query = "DELETE FROM tblsales WHERE salesID = '"+id+"'"
-          self.mycursor.execute(query)
-          self.db.commit()
-          self.retrieveTransactions()
-
-
-    def editDB(self, id):
-        try:
-             product = self.editProductComboBox.currentText()
-             description = self.editTransactionDescInput.text()
-             customer = self.editTransactionCustInput.text()
-             price = self.editTransactionPriceInput.text()
-             quantity = self.editTransactionQuantity.value()
-
-             query = "UPDATE tblsales SET product = %s, description = %s, customer_name = %s, quantity = %s, unitPrice = %s WHERE salesID = %s"
-             values = (product, description, customer, quantity, price, id)
-
-             self.mycursor.execute(query, values)
-             self.db.commit()
-             print("successfuly updated data")
-             self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
-             self.retrieveTransactions()
-
-        except mdb.Error as e:
-             print("Error")
 
 
 
@@ -691,7 +633,7 @@ class Ui_MainWindow(object):
              print("successfuly added data")
              self.addTransaction(self.mycursor.lastrowid)
              self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
-             self.retrieveTransactions()
+
 
         except mdb.Error as e:
              print("Error")
@@ -705,7 +647,7 @@ class Ui_MainWindow(object):
         try: 
              current_time = datetime.datetime.now()      
              query = "INSERT INTO tbltransaction(salesID, userID, date) VALUES (%s,%s,%s)"
-             values = (saleID, self.user, current_time)        
+             values = (saeID, self.user, current_time)        
              
              self.mycursor.execute(query, values)
              self.db.commit()
@@ -714,6 +656,80 @@ class Ui_MainWindow(object):
         except mdb.Error as e:
              print("Error")
 
+
+
+
+
+    def generateTransactionInstance(self):
+        try:
+             numrow = self.mycursor.execute("SELECT * FROM tblsales")
+            
+             self.transactionInstanceFrame = QtWidgets.QFrame(self.transactionContentFrame)
+             self.transactionInstanceFrame.setGeometry(QtCore.QRect(30, 20, 701, 51))
+             self.transactionInstanceFrame.setStyleSheet("background-color: rgb(247, 247, 247);\n"
+                "border-radius:5px;")
+             self.transactionInstanceFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+             self.transactionInstanceFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+             self.transactionInstanceFrame.setObjectName("transactionInstanceFrame")
+
+             
+             self.productLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+             self.productLabel.setGeometry(QtCore.QRect(10, 15, 121, 21))
+             font = QtGui.QFont()
+             font.setFamily("Verdana")
+             self.productLabel.setFont(font)
+             self.productLabel.setStyleSheet("color: rgb(117, 117, 117)")
+             self.productLabel.setObjectName("productLabel")
+             self.customerLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+             self.customerLabel.setGeometry(QtCore.QRect(230, 15, 121, 21))
+             font = QtGui.QFont()
+             font.setFamily("Verdana")
+             self.customerLabel.setFont(font)
+             self.customerLabel.setStyleSheet("color: rgb(117, 117, 117)")
+             self.customerLabel.setObjectName("customerLabel")
+             self.priceLabel = QtWidgets.QLabel(self.transactionInstanceFrame)
+             self.priceLabel.setGeometry(QtCore.QRect(490, 15, 121, 21))
+             font = QtGui.QFont()
+             font.setFamily("Verdana")
+             self.priceLabel.setFont(font)
+             self.priceLabel.setStyleSheet("color: rgb(117, 117, 117)")
+             self.priceLabel.setObjectName("priceLabel")
+             self.pushButton = QtWidgets.QPushButton(self.transactionInstanceFrame)
+             self.pushButton.setGeometry(QtCore.QRect(620, 12, 31, 31))
+             self.pushButton.setStyleSheet("QPushButton#transactionsButton{\n"
+        "    border: 0px solid;\n"
+        "}\n"
+        "\n"
+        "QPushButton:hover#transactionsButton{\n"
+        "    \n"
+        "}")
+             self.pushButton.setText("")
+             icon = QtGui.QIcon()
+             icon.addPixmap(QtGui.QPixmap("remove_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+             self.pushButton.setIcon(icon)
+             self.pushButton.setIconSize(QtCore.QSize(22, 22))
+             self.pushButton.setFlat(True)
+             self.pushButton.setObjectName("pushButton")
+             self.pushButton_2 = QtWidgets.QPushButton(self.transactionInstanceFrame)
+             self.pushButton_2.setGeometry(QtCore.QRect(660, 11, 31, 31))
+             self.pushButton_2.setStyleSheet("QPushButton#transactionsButton{\n"
+        "    border: 0px solid;\n"
+        "}\n"
+        "\n"
+        "QPushButton:hover#transactionsButton{\n"
+        "    \n"
+        "}")
+             self.pushButton_2.setText("")
+             icon1 = QtGui.QIcon()
+             icon1.addPixmap(QtGui.QPixmap("edit_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+             self.pushButton_2.setIcon(icon1)
+             self.pushButton_2.setIconSize(QtCore.QSize(22, 22))
+             self.pushButton_2.setFlat(True)
+             self.pushButton_2.setObjectName("pushButton_2")
+
+
+        except mdb.Error as e:
+             print("Error")
 
 
 
@@ -734,21 +750,13 @@ class Ui_MainWindow(object):
         self.transactionsButton.setText(_translate("MainWindow", "Transactions"))
         self.sideMenuLabel.setText(_translate("MainWindow", "Menu"))
         self.addTransactionButton.setText(_translate("MainWindow", "Add Transaction"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "ID"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Product"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Customer"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Price"))
-        item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Edit"))
-        item = self.tableWidget.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Remove"))
+        # self.productLabel.setText(_translate("MainWindow", "Tshirt Print"))
+        # self.customerLabel.setText(_translate("MainWindow", "Kevin Heart"))
+        # self.priceLabel.setText(_translate("MainWindow", "500"))
         self.transactionLabel.setText(_translate("MainWindow", "Transactions"))
-        self.sortLabel.setText(_translate("MainWindow", "Sort date"))
-        self.sortComboBox.setItemText(0, _translate("MainWindow", "By Date"))
+        self.transactionLabel2.setText(_translate("MainWindow", "Product"))
+        self.transactionLabel3.setText(_translate("MainWindow", "Customer"))
+        self.transactionLabel4.setText(_translate("MainWindow", "Price"))
         self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
         self.addProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
         self.addProductComboBox.setItemText(0, _translate("MainWindow", "Tarpaulin Printing"))
