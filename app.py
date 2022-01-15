@@ -540,6 +540,7 @@ class Ui_MainWindow(object):
         self.mycursor = self.db.cursor()
 
         self.user = 0;
+        self.sortItems = []
 
         ####CONNECT TO DATABASE
         DBConnection()
@@ -591,32 +592,63 @@ class Ui_MainWindow(object):
     #RETRIEVE TRANSACTION
     def retrieveTransactions(self):
         try:
+            self.getDatesDB()
             self.mainScreens.setCurrentWidget(self.transactionScreen)
+            for item in self.sortItems:
+                self.sortComboBox.addItem(item)
+            
+            self.sortComboBox.currentIndexChanged.connect(self.sortClicked)
 
             query = "SELECT * FROM tblsales"
-            self.mycursor.execute(query)
-            
+            self.mycursor.execute(query)    
+
             row = 0
             rowCount = self.mycursor.rowcount
             self.tableWidget.setRowCount(rowCount)
             for data in self.mycursor:
-                 self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
-                 self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
-                 self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
-                 self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
-                 self.btn_sell = QtWidgets.QPushButton('Edit')
-                 self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
-                 self.tableWidget.setCellWidget(row,4,self.btn_sell)
-                 self.btn_remove = QtWidgets.QPushButton('Remove')
-                 self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
-                 self.tableWidget.setCellWidget(row,5,self.btn_remove)            
-                 row = row+1
-                
-            #self.tableWidget.setColumnHidden(0, true)
-
-
+                self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
+                self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
+                self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
+                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
+                self.btn_sell = QtWidgets.QPushButton('Edit')
+                self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
+                self.tableWidget.setCellWidget(row,4,self.btn_sell)
+                self.btn_remove = QtWidgets.QPushButton('Remove')
+                self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
+                self.tableWidget.setCellWidget(row,5,self.btn_remove)            
+                row = row+1
+        
+        #self.tableWidget.setColumnHidden(0, true)    
         except Exception:
              print("Error retrieving data")
+
+
+
+    def sortClicked(self):
+        if self.sortComboBox.currentText() == "All":
+            query = "SELECT * FROM tblsales"
+            self.mycursor.execute(query)
+        else:
+            query = "SELECT tblsales.salesID, tblsales.transactionID, tblsales.product, tblsales.description, tblsales.customer_name, tblsales.quantity, tblsales.unitPrice FROM tblsales INNER JOIN tbltransaction ON tblsales.salesID = tbltransaction.salesID WHERE tbltransaction.date ='"+self.sortComboBox.currentText()+"'"
+            self.mycursor.execute(query)    
+
+        row = 0
+        rowCount = self.mycursor.rowcount
+        self.tableWidget.setRowCount(rowCount)
+        for data in self.mycursor:
+                self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
+                self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
+                self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
+                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
+                self.btn_sell = QtWidgets.QPushButton('Edit')
+                self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
+                self.tableWidget.setCellWidget(row,4,self.btn_sell)
+                self.btn_remove = QtWidgets.QPushButton('Remove')
+                self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
+                self.tableWidget.setCellWidget(row,5,self.btn_remove)            
+                row = row+1
+        
+        #self.tableWidget.setColumnHidden(0, true)
 
 
 
@@ -673,6 +705,16 @@ class Ui_MainWindow(object):
              print("Error")
 
 
+    def getDatesDB(self):
+          query = "SELECT DISTINCT(date) FROM tbltransaction"
+          self.mycursor.execute(query)
+          
+          for date in self.mycursor:
+               self.sortItems.append(date[0])
+
+    #def getSpecificDateDB(self):
+          
+
 
     ##ADD SALES TO DATABASE
     def addSales(self):
@@ -703,7 +745,7 @@ class Ui_MainWindow(object):
     #ADD TRANSACTION TO DATABASE  
     def addTransaction(self, saleID):
         try: 
-             current_time = datetime.datetime.now()      
+             current_time = datetime.date.today().strftime("%b-%d-%Y")  
              query = "INSERT INTO tbltransaction(salesID, userID, date) VALUES (%s,%s,%s)"
              values = (saleID, self.user, current_time)        
              
@@ -748,7 +790,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Remove"))
         self.transactionLabel.setText(_translate("MainWindow", "Transactions"))
         self.sortLabel.setText(_translate("MainWindow", "Sort date"))
-        self.sortComboBox.setItemText(0, _translate("MainWindow", "By Date"))
+        self.sortComboBox.setItemText(0, _translate("MainWindow", "All"))
         self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
         self.addProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
         self.addProductComboBox.setItemText(0, _translate("MainWindow", "Tarpaulin Printing"))
