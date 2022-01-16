@@ -237,6 +237,194 @@ class Ui_MainWindow(object):
         self.dashboardScreen = QtWidgets.QWidget()
         self.dashboardScreen.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.dashboardScreen.setObjectName("dashboardScreen")
+        self.frame = QtWidgets.QFrame(self.dashboardScreen)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 771, 501))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.dashboardLabel = QtWidgets.QLabel(self.frame)
+        self.dashboardLabel.setGeometry(QtCore.QRect(40, 20, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardLabel.setFont(font)
+        self.dashboardLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardLabel.setObjectName("dashboardLabel")
+        self.totalSalesFrame = QtWidgets.QFrame(self.frame)
+        self.totalSalesFrame.setGeometry(QtCore.QRect(40, 70, 191, 111))
+        self.totalSalesFrame.setStyleSheet("background-color: rgb(235, 152, 78);")
+        self.totalSalesFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.totalSalesFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.totalSalesFrame.setObjectName("totalSalesFrame")
+        self.totalSalesLabel2 = QtWidgets.QLabel(self.totalSalesFrame)
+        self.totalSalesLabel2.setGeometry(QtCore.QRect(20, 70, 101, 31))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.totalSalesLabel2.setFont(font)
+        self.totalSalesLabel2.setStyleSheet("color: rgb(255, 255, 255)")
+        self.totalSalesLabel2.setObjectName("totalSalesLabel2")
+        self.totalSalesLabel = QtWidgets.QLabel(self.totalSalesFrame)
+        self.totalSalesLabel.setGeometry(QtCore.QRect(20, 20, 141, 41))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(26)
+        font.setBold(True)
+        font.setWeight(75)
+        self.totalSalesLabel.setFont(font)
+        self.totalSalesLabel.setStyleSheet("color: rgb(255, 255, 255)")
+        self.totalSalesLabel.setObjectName("totalSalesLabel")
+        self.totalSalesFrame_2 = QtWidgets.QFrame(self.frame)
+        self.totalSalesFrame_2.setGeometry(QtCore.QRect(280, 70, 191, 111))
+        self.totalSalesFrame_2.setStyleSheet("background-color: rgb(26, 188, 156)")
+        self.totalSalesFrame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.totalSalesFrame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.totalSalesFrame_2.setObjectName("totalSalesFrame_2")
+        self.totalSalesLabel2_4 = QtWidgets.QLabel(self.totalSalesFrame_2)
+        self.totalSalesLabel2_4.setGeometry(QtCore.QRect(20, 70, 161, 31))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.totalSalesLabel2_4.setFont(font)
+        self.totalSalesLabel2_4.setStyleSheet("color: rgb(255, 255, 255)")
+        self.totalSalesLabel2_4.setObjectName("totalSalesLabel2_4")
+        self.totalSalesLabel_4 = QtWidgets.QLabel(self.totalSalesFrame_2)
+        self.totalSalesLabel_4.setGeometry(QtCore.QRect(20, 20, 141, 41))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setPointSize(26)
+        font.setBold(True)
+        font.setWeight(75)
+        self.totalSalesLabel_4.setFont(font)
+        self.totalSalesLabel_4.setStyleSheet("color: rgb(255, 255, 255)")
+        self.totalSalesLabel_4.setObjectName("totalSalesLabel_4")
+        self.dashboardMonthlySalesLabel = QtWidgets.QLabel(self.frame)
+        self.dashboardMonthlySalesLabel.setGeometry(QtCore.QRect(40, 260, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardMonthlySalesLabel.setFont(font)
+        self.dashboardMonthlySalesLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardMonthlySalesLabel.setObjectName("dashboardMonthlySalesLabel")
+        self.salesMonth1Label = QtWidgets.QLabel(self.frame)
+        self.salesMonth1Label.setGeometry(QtCore.QRect(40, 340, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.salesMonth1Label.setFont(font)
+        self.salesMonth1Label.setStyleSheet("color: rgb(117, 117, 117)")
+        self.salesMonth1Label.setObjectName("salesMonth1Label")
+        self.salesMonth2Label = QtWidgets.QLabel(self.frame)
+        self.salesMonth2Label.setGeometry(QtCore.QRect(40, 370, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.salesMonth2Label.setFont(font)
+        self.salesMonth2Label.setStyleSheet("color: rgb(117, 117, 117)")
+        self.salesMonth2Label.setText("")
+        self.salesMonth2Label.setObjectName("salesMonth2Label")
+        self.salesMonth3Label = QtWidgets.QLabel(self.frame)
+        self.salesMonth3Label.setGeometry(QtCore.QRect(40, 400, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.salesMonth3Label.setFont(font)
+        self.salesMonth3Label.setStyleSheet("color: rgb(117, 117, 117)")
+        self.salesMonth3Label.setText("")
+        self.salesMonth3Label.setObjectName("salesMonth3Label")
+        self.dashboardMonthLabel = QtWidgets.QLabel(self.frame)
+        self.dashboardMonthLabel.setGeometry(QtCore.QRect(40, 300, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardMonthLabel.setFont(font)
+        self.dashboardMonthLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardMonthLabel.setObjectName("dashboardMonthLabel")
+        self.dashboardSalesLabel = QtWidgets.QLabel(self.frame)
+        self.dashboardSalesLabel.setGeometry(QtCore.QRect(350, 300, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardSalesLabel.setFont(font)
+        self.dashboardSalesLabel.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardSalesLabel.setObjectName("dashboardSalesLabel")
+        self.dashboardSales = QtWidgets.QLabel(self.frame)
+        self.dashboardSales.setGeometry(QtCore.QRect(320, 340, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardSales.setFont(font)
+        self.dashboardSales.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardSales.setObjectName("dashboardSales")
+        self.dashboardSales2 = QtWidgets.QLabel(self.frame)
+        self.dashboardSales2.setGeometry(QtCore.QRect(320, 370, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardSales2.setFont(font)
+        self.dashboardSales2.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardSales2.setText("")
+        self.dashboardSales2.setObjectName("dashboardSales2")
+        self.dashboardSales3 = QtWidgets.QLabel(self.frame)
+        self.dashboardSales3.setGeometry(QtCore.QRect(320, 400, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardSales3.setFont(font)
+        self.dashboardSales3.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardSales3.setText("")
+        self.dashboardSales3.setObjectName("dashboardSales3")
+        self.salesMonth4Label = QtWidgets.QLabel(self.frame)
+        self.salesMonth4Label.setGeometry(QtCore.QRect(40, 430, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.salesMonth4Label.setFont(font)
+        self.salesMonth4Label.setStyleSheet("color: rgb(117, 117, 117)")
+        self.salesMonth4Label.setText("")
+        self.salesMonth4Label.setObjectName("salesMonth4Label")
+        self.dashboardSales4 = QtWidgets.QLabel(self.frame)
+        self.dashboardSales4.setGeometry(QtCore.QRect(320, 430, 121, 21))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        font.setBold(True)
+        font.setWeight(75)
+        self.dashboardSales4.setFont(font)
+        self.dashboardSales4.setStyleSheet("color: rgb(117, 117, 117)")
+        self.dashboardSales4.setText("")
+        self.dashboardSales4.setObjectName("dashboardSales4")
+        self.generateReportButton = QtWidgets.QPushButton(self.frame)
+        self.generateReportButton.setGeometry(QtCore.QRect(40, 220, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.generateReportButton.setFont(font)
+        self.generateReportButton.setStyleSheet("QPushButton#generateReportButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(102, 150, 200);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#generateReportButton{\n"
+"    background-color: rgb(113, 167, 221)\n"
+"}")
+        self.generateReportButton.setObjectName("generateReportButton")
         self.mainScreens.addWidget(self.dashboardScreen)
         self.transactionScreen = QtWidgets.QWidget()
         self.transactionScreen.setObjectName("transactionScreen")
@@ -339,6 +527,7 @@ class Ui_MainWindow(object):
         self.transactionLabel.setGeometry(QtCore.QRect(40, 20, 121, 21))
         font = QtGui.QFont()
         font.setFamily("Verdana")
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.transactionLabel.setFont(font)
@@ -527,6 +716,7 @@ class Ui_MainWindow(object):
 
 
 
+
         ########################################
         ########################################
         ########################################
@@ -548,7 +738,7 @@ class Ui_MainWindow(object):
         
         ###NAVIGATION
         self.loginButton.clicked.connect(lambda: self.login())
-        self.dashboardButton.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.dashboardScreen))
+        self.dashboardButton.clicked.connect(lambda: self.navigateDashboard())
         self.transactionsButton.clicked.connect(lambda: self.retrieveTransactions())
         self.addTransactionButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.addTransactionPage))
         #self.pushButton_2.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage))
@@ -581,20 +771,26 @@ class Ui_MainWindow(object):
              else:
                 self.user = result[0]
                 self.stackedWidget.setCurrentWidget(self.mainPage)
+                self.navigateDashboard()
         
         except mdb.Error as e:
              print("Error")
 
 
 
-
+    def navigateDashboard(self):
+        self.mainScreens.setCurrentWidget(self.dashboardScreen)
+        self.getTotalSalesDB()
 
     #RETRIEVE TRANSACTION
     def retrieveTransactions(self):
         try:
             self.getDatesDB()
             self.mainScreens.setCurrentWidget(self.transactionScreen)
+            AllItems = [self.sortComboBox.itemText(i) for i in range(self.sortComboBox.count())]
             for item in self.sortItems:
+                if item in AllItems:
+                     continue
                 self.sortComboBox.addItem(item)
             
             self.sortComboBox.currentIndexChanged.connect(self.sortClicked)
@@ -617,7 +813,8 @@ class Ui_MainWindow(object):
                 self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
                 self.tableWidget.setCellWidget(row,5,self.btn_remove)            
                 row = row+1
-        
+            
+            
         #self.tableWidget.setColumnHidden(0, true)    
         except Exception:
              print("Error retrieving data")
@@ -712,8 +909,13 @@ class Ui_MainWindow(object):
           for date in self.mycursor:
                self.sortItems.append(date[0])
 
-    #def getSpecificDateDB(self):
-          
+    def getTotalSalesDB(self):
+          query = "SELECT SUM(unitPrice) FROM tblsales"
+          self.mycursor.execute(query)
+          result = self.mycursor.fetchone()
+
+          self.totalSalesLabel.setText(str(result[0]))
+
 
 
     ##ADD SALES TO DATABASE
@@ -759,6 +961,7 @@ class Ui_MainWindow(object):
 
 
 
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -775,6 +978,17 @@ class Ui_MainWindow(object):
         self.dashboardButton.setText(_translate("MainWindow", "Dashboard"))
         self.transactionsButton.setText(_translate("MainWindow", "Transactions"))
         self.sideMenuLabel.setText(_translate("MainWindow", "Menu"))
+        self.dashboardLabel.setText(_translate("MainWindow", "Dashboard"))
+        self.totalSalesLabel2.setText(_translate("MainWindow", "Total Sales"))
+        self.totalSalesLabel.setText(_translate("MainWindow", "2,799"))
+        self.totalSalesLabel2_4.setText(_translate("MainWindow", "Total Sale Transaction"))
+        self.totalSalesLabel_4.setText(_translate("MainWindow", "3"))
+        self.dashboardMonthlySalesLabel.setText(_translate("MainWindow", "Monthly Sales"))
+        self.salesMonth1Label.setText(_translate("MainWindow", "Monthly Sales"))
+        self.dashboardMonthLabel.setText(_translate("MainWindow", "Month"))
+        self.dashboardSalesLabel.setText(_translate("MainWindow", "Sales"))
+        self.dashboardSales.setText(_translate("MainWindow", "Monthly Sales"))
+        self.generateReportButton.setText(_translate("MainWindow", "Generate Report"))
         self.addTransactionButton.setText(_translate("MainWindow", "Add Transaction"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))

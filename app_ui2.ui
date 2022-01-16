@@ -620,6 +620,463 @@ QPushButton:hover#transactionsButton{
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
+         <widget class="QFrame" name="frame">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>771</width>
+            <height>501</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="dashboardLabel">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>20</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Dashboard</string>
+           </property>
+          </widget>
+          <widget class="QFrame" name="totalSalesFrame">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>70</y>
+             <width>191</width>
+             <height>111</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(235, 152, 78);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLabel" name="totalSalesLabel2">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>101</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255)</string>
+            </property>
+            <property name="text">
+             <string>Total Sales</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="totalSalesLabel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>141</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>26</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255)</string>
+            </property>
+            <property name="text">
+             <string>2,799</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QFrame" name="totalSalesFrame_2">
+           <property name="geometry">
+            <rect>
+             <x>280</x>
+             <y>70</y>
+             <width>191</width>
+             <height>111</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(26, 188, 156)</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLabel" name="totalSalesLabel2_4">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>161</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255)</string>
+            </property>
+            <property name="text">
+             <string>Total Sale Transaction</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="totalSalesLabel_4">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>141</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>26</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255)</string>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QLabel" name="dashboardMonthlySalesLabel">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>260</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Monthly Sales</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="salesMonth1Label">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>340</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Monthly Sales</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="salesMonth2Label">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>370</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="salesMonth3Label">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>400</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardMonthLabel">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>300</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Month</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardSalesLabel">
+           <property name="geometry">
+            <rect>
+             <x>350</x>
+             <y>300</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Sales</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardSales">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>340</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Monthly Sales</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardSales2">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>370</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardSales3">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>400</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="salesMonth4Label">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>430</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="dashboardSales4">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>430</y>
+             <width>121</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="generateReportButton">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>220</y>
+             <width>111</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#generateReportButton{
+	color: rgb(255, 255, 255);
+	background-color: rgb(102, 150, 200);
+	border: 0px solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover#generateReportButton{
+	background-color: rgb(113, 167, 221)
+}</string>
+           </property>
+           <property name="text">
+            <string>Generate Report</string>
+           </property>
+          </widget>
+         </widget>
         </widget>
         <widget class="QWidget" name="transactionScreen">
          <widget class="QStackedWidget" name="transactionStackedWidget">
@@ -848,6 +1305,7 @@ QPushButton:hover#addTransactionButton{
              <property name="font">
               <font>
                <family>Verdana</family>
+               <pointsize>12</pointsize>
                <weight>75</weight>
                <bold>true</bold>
               </font>
