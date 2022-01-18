@@ -389,6 +389,66 @@ QPushButton:hover#loginButton{
         <string>JLNeon</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="editCredentialBtn">
+       <property name="geometry">
+        <rect>
+         <x>830</x>
+         <y>10</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#editCredentialBtn{
+
+	border: 0px solid;
+
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>settings (1).png</normaloff>settings (1).png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="logoutBtn">
+       <property name="geometry">
+        <rect>
+         <x>880</x>
+         <y>10</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#logoutBtn{
+	border: 0px solid;
+}
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>logout.png</normaloff>logout.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>25</height>
+        </size>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="main_BottomFrame">
       <property name="geometry">
@@ -523,7 +583,7 @@ QPushButton:hover#transactionsButton{
 }</string>
          </property>
          <property name="text">
-          <string>Transactions</string>
+          <string>Sales</string>
          </property>
         </widget>
        </widget>
@@ -765,7 +825,7 @@ QPushButton:hover#transactionsButton{
              <string notr="true">color: rgb(255, 255, 255)</string>
             </property>
             <property name="text">
-             <string>Total Sale Transaction</string>
+             <string>Number of Sales</string>
             </property>
            </widget>
            <widget class="QLabel" name="totalSalesLabel_4">
@@ -836,7 +896,7 @@ QPushButton:hover#transactionsButton{
             <string notr="true">color: rgb(117, 117, 117)</string>
            </property>
            <property name="text">
-            <string>Monthly Sales</string>
+            <string>January</string>
            </property>
           </widget>
           <widget class="QLabel" name="salesMonth2Label">
@@ -934,7 +994,7 @@ QPushButton:hover#transactionsButton{
           <widget class="QLabel" name="dashboardSales">
            <property name="geometry">
             <rect>
-             <x>320</x>
+             <x>350</x>
              <y>340</y>
              <width>121</width>
              <height>21</height>
@@ -1044,6 +1104,124 @@ QPushButton:hover#transactionsButton{
            </property>
            <property name="text">
             <string/>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="changeScreen">
+         <widget class="QFrame" name="changeFrame">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>771</width>
+            <height>501</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="changeLabel1">
+           <property name="geometry">
+            <rect>
+             <x>310</x>
+             <y>80</y>
+             <width>160</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Verdana</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(117, 117, 117)</string>
+           </property>
+           <property name="text">
+            <string>Edit Credential</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="changeUsername">
+           <property name="geometry">
+            <rect>
+             <x>250</x>
+             <y>150</y>
+             <width>251</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="placeholderText">
+            <string> Username</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="changePassword">
+           <property name="geometry">
+            <rect>
+             <x>250</x>
+             <y>220</y>
+             <width>251</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="placeholderText">
+            <string> Password</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="changeSave">
+           <property name="geometry">
+            <rect>
+             <x>250</x>
+             <y>300</y>
+             <width>111</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#changeSave{
+	color: rgb(255, 255, 255);
+	background-color: rgb(102, 150, 200);
+	border: 0px solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover#changeSave{
+	background-color: rgb(113, 167, 221)
+}</string>
+           </property>
+           <property name="text">
+            <string>Save</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="changeCancel">
+           <property name="geometry">
+            <rect>
+             <x>390</x>
+             <y>300</y>
+             <width>111</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#changeCancel{
+	color: rgb(255, 255, 255);
+	background-color: rgb(255, 123, 79);
+	border: 0px solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover#changeCancel{
+	background-color: rgb(255, 119, 65);
+}</string>
+           </property>
+           <property name="text">
+            <string>Cancel</string>
            </property>
           </widget>
          </widget>
@@ -1291,7 +1469,7 @@ QPushButton:hover#addTransactionButton{
               <string notr="true">color: rgb(117, 117, 117)</string>
              </property>
              <property name="text">
-              <string>Transactions</string>
+              <string>Sales</string>
              </property>
             </widget>
             <widget class="QLabel" name="sortLabel">
@@ -1329,7 +1507,7 @@ QPushButton:hover#addTransactionButton{
              </property>
              <item>
               <property name="text">
-               <string>All</string>
+               <string>January</string>
               </property>
              </item>
             </widget>

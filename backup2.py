@@ -17,7 +17,6 @@ import decimal
 from fpdf import FPDF
 
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -42,7 +41,7 @@ class Ui_MainWindow(object):
         self.loginLeftFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.loginLeftFrame.setObjectName("loginLeftFrame")
         self.loginIntroLabel1 = QtWidgets.QLabel(self.loginLeftFrame)
-        self.loginIntroLabel1.setGeometry(QtCore.QRect(80, 150, 271, 51))
+        self.loginIntroLabel1.setGeometry(QtCore.QRect(80, 100, 271, 51))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(20)
@@ -52,7 +51,7 @@ class Ui_MainWindow(object):
         self.loginIntroLabel1.setStyleSheet("color: rgb(255, 255, 255)")
         self.loginIntroLabel1.setObjectName("loginIntroLabel1")
         self.loginIntroLabel2 = QtWidgets.QLabel(self.loginLeftFrame)
-        self.loginIntroLabel2.setGeometry(QtCore.QRect(85, 200, 271, 31))
+        self.loginIntroLabel2.setGeometry(QtCore.QRect(85, 150, 271, 31))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(20)
@@ -163,34 +162,6 @@ class Ui_MainWindow(object):
         self.label.setFont(font)
         self.label.setStyleSheet("color: rgb(255, 255, 255)")
         self.label.setObjectName("label")
-        self.editCredentialBtn = QtWidgets.QPushButton(self.main_TopFframe)
-        self.editCredentialBtn.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.editCredentialBtn.setGeometry(QtCore.QRect(830, 10, 61, 31))
-        self.editCredentialBtn.setStyleSheet("QPushButton#editCredentialBtn{\n"
-"\n"
-"    border: 0px solid;\n"
-"\n"
-"}\n"
-"")
-        self.editCredentialBtn.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("setting.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.editCredentialBtn.setIcon(icon)
-        self.editCredentialBtn.setIconSize(QtCore.QSize(30, 25))
-        self.editCredentialBtn.setObjectName("editCredentialBtn")
-        self.logoutBtn = QtWidgets.QPushButton(self.main_TopFframe)
-        self.logoutBtn.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.logoutBtn.setGeometry(QtCore.QRect(880, 10, 61, 31))
-        self.logoutBtn.setStyleSheet("QPushButton#logoutBtn{\n"
-"    border: 0px solid;\n"
-"}\n"
-"")
-        self.logoutBtn.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("logout4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.logoutBtn.setIcon(icon1)
-        self.logoutBtn.setIconSize(QtCore.QSize(30, 25))
-        self.logoutBtn.setObjectName("logoutBtn")
         self.main_BottomFrame = QtWidgets.QFrame(self.mainPage)
         self.main_BottomFrame.setGeometry(QtCore.QRect(0, 50, 950, 501))
         self.main_BottomFrame.setMinimumSize(QtCore.QSize(950, 501))
@@ -826,7 +797,7 @@ class Ui_MainWindow(object):
 
 
         self.passwordField.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.changePassword.setEchoMode(QtWidgets.QLineEdit.Password)
+
         ###NAVIGATION
         self.loginButton.clicked.connect(lambda: self.login())
         self.dashboardButton.clicked.connect(lambda: self.navigateDashboard())
@@ -839,12 +810,8 @@ class Ui_MainWindow(object):
         self.addTransactionCancelButton.clicked.connect(lambda: self.cancelAddSales())
         self.editTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
         self.generateReportButton.clicked.connect(lambda: self.generateReport(self.sortComboBox.currentText()))
-        self.editCredentialBtn.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.changeScreen))
-        self.changeCancel.clicked.connect(lambda: self.mainScreens.setCurrentWidget(self.dashboardScreen))
-        self.changeSave.clicked.connect(lambda: self.editCredentialDB())
-        self.logoutBtn.clicked.connect(lambda: self.logout())
 
-
+        
 
         #####STYLE#####
         #TABLE
@@ -893,13 +860,6 @@ class Ui_MainWindow(object):
 
 
 
-    def logout(self):
-        msg = QtWidgets.QMessageBox()
-        msg.setWindowTitle("Logout")
-        msg.setText("Logging out...")
-        msg.setIcon(QtWidgets.QMessageBox.Information)
-        x = msg.exec_()  
-        self.stackedWidget.setCurrentWidget(self.loginPage)
 
     def navigateDashboard(self):
         self.mainScreens.setCurrentWidget(self.dashboardScreen)
@@ -1023,29 +983,6 @@ class Ui_MainWindow(object):
      ##################################
      #QUERIES
      ##################################  
-
-    def editCredentialDB(self):
-        try:
-             username = self.changeUsername.text()
-             password = self.changePassword.text()
-
-             query = "UPDATE tbluser SET username = %s, password = %s WHERE userID = %s"
-             values = (username, password, self.user)
-
-             self.mycursor.execute(query, values)
-             self.db.commit()
-             
-             msg = QtWidgets.QMessageBox()
-             msg.setWindowTitle("Change Credential")
-             msg.setText("Successfuly Changed")
-             msg.setIcon(QtWidgets.QMessageBox.Information)
-             x = msg.exec_()  
-             self.mainScreens.setCurrentWidget(self.dashboardScreen)
-
-        except mdb.Error as e:
-             print("Error")
-
-
 
     def removeDB(self, id):
         try:
@@ -1300,8 +1237,6 @@ class Ui_MainWindow(object):
 
 
 
-
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "JLNeon"))
@@ -1321,7 +1256,7 @@ class Ui_MainWindow(object):
         self.dashboardLabel.setText(_translate("MainWindow", "Dashboard"))
         self.totalSalesLabel2.setText(_translate("MainWindow", "Total Sales"))
         self.totalSalesLabel.setText(_translate("MainWindow", "0"))
-        self.totalSalesLabel2_4.setText(_translate("MainWindow", "Number of Sales"))
+        self.totalSalesLabel2_4.setText(_translate("MainWindow", "Total Sale Transaction"))
         self.totalSalesLabel_4.setText(_translate("MainWindow", "3"))
         self.dashboardMonthlySalesLabel.setText(_translate("MainWindow", "Monthly Sales"))
         self.salesMonth1Label.setText(_translate("MainWindow", "January"))
@@ -1348,7 +1283,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Remove"))
         self.transactionLabel.setText(_translate("MainWindow", "Sales"))
         self.sortLabel.setText(_translate("MainWindow", "Sort date"))
-        self.sortComboBox.setItemText(0, _translate("MainWindow", "January"))
+        self.sortComboBox.setItemText(0, _translate("MainWindow", "All"))
         self.generateReportButton.setText(_translate("MainWindow", "Generate Report"))
         self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
         self.addProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
