@@ -12,7 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport
 from dbconnection import *
 import MySQLdb as mdb
 import datetime
+import decimal
 from fpdf import FPDF
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -410,22 +412,6 @@ class Ui_MainWindow(object):
         self.dashboardSales4.setStyleSheet("color: rgb(117, 117, 117)")
         self.dashboardSales4.setText("")
         self.dashboardSales4.setObjectName("dashboardSales4")
-        self.generateReportButton = QtWidgets.QPushButton(self.frame)
-        self.generateReportButton.setGeometry(QtCore.QRect(40, 220, 111, 31))
-        font = QtGui.QFont()
-        font.setFamily("Verdana")
-        self.generateReportButton.setFont(font)
-        self.generateReportButton.setStyleSheet("QPushButton#generateReportButton{\n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(102, 150, 200);\n"
-"    border: 0px solid;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover#generateReportButton{\n"
-"    background-color: rgb(113, 167, 221)\n"
-"}")
-        self.generateReportButton.setObjectName("generateReportButton")
         self.mainScreens.addWidget(self.dashboardScreen)
         self.transactionScreen = QtWidgets.QWidget()
         self.transactionScreen.setObjectName("transactionScreen")
@@ -549,6 +535,24 @@ class Ui_MainWindow(object):
         self.sortComboBox.setGeometry(QtCore.QRect(130, 60, 101, 25))
         self.sortComboBox.setObjectName("sortComboBox")
         self.sortComboBox.addItem("")
+        self.generateReportButton = QtWidgets.QPushButton(self.transactionHeaderFrame)
+        self.generateReportButton.setGeometry(QtCore.QRect(535, 55, 122, 31))
+        font = QtGui.QFont()
+        font.setFamily("Verdana")
+        self.generateReportButton.setIcon(QtGui.QIcon('download_icon.png'))
+        self.generateReportButton.setIconSize(QtCore.QSize(10,10))
+        self.generateReportButton.setFont(font)
+        self.generateReportButton.setStyleSheet("QPushButton#generateReportButton{\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgb(255, 123, 79);\n"
+"    border: 0px solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#generateReportButton{\n"
+"    background-color: rgb(255, 119, 65)\n"
+"}")
+        self.generateReportButton.setObjectName("generateReportButton")
         self.transactionStackedWidget.addWidget(self.viewTransactions)
         self.addTransactionPage = QtWidgets.QWidget()
         self.addTransactionPage.setObjectName("addTransactionPage")
@@ -719,9 +723,6 @@ class Ui_MainWindow(object):
 
 
 
-
-
-
         ########################################
         ########################################
         ########################################
@@ -734,14 +735,19 @@ class Ui_MainWindow(object):
         self.db = mdb.connect('localhost', 'root', '', 'jlneon')
         self.mycursor = self.db.cursor()
 
-        self.user = 0;
+        self.user = 0
         self.dashboardClicked = True
         self.sortItems = []
+        self.saleInstance = 0
 
         ####CONNECT TO DATABASE
         DBConnection()
 
         
+
+
+        self.passwordField.setEchoMode(QtWidgets.QLineEdit.Password)
+
         ###NAVIGATION
         self.loginButton.clicked.connect(lambda: self.login())
         self.dashboardButton.clicked.connect(lambda: self.navigateDashboard())
@@ -751,9 +757,9 @@ class Ui_MainWindow(object):
         
         
         self.addTransactionSaveButton.clicked.connect(lambda: self.addSales())
-        self.addTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
+        self.addTransactionCancelButton.clicked.connect(lambda: self.cancelAddSales())
         self.editTransactionCancelButton.clicked.connect(lambda: self.transactionStackedWidget.setCurrentWidget(self.viewTransactions))
-
+        self.generateReportButton.clicked.connect(lambda: self.generateReport())
 
         
 
@@ -788,8 +794,12 @@ class Ui_MainWindow(object):
              result = self.mycursor.fetchone()
 
              if result == None:
-                  print("Error logging in")
-        
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Login Error")
+                msg.setText("Error logging in")
+                msg.setIcon(QtWidgets.QMessageBox.Warning)
+                x = msg.exec_()
+
              else:
                 self.user = result[0]
                 self.stackedWidget.setCurrentWidget(self.mainPage)
@@ -800,12 +810,16 @@ class Ui_MainWindow(object):
 
 
 
+
     def navigateDashboard(self):
         self.mainScreens.setCurrentWidget(self.dashboardScreen)
         if self.dashboardClicked == True:
              self.dashboardButton.setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(117, 117, 117); border: 0px solid;")
              self.transactionsButton.setStyleSheet("color: rgb(117, 117, 117); background-color: rgb(247, 247, 247); border: 0px solid;")
         self.getTotalSalesDB()
+        self.getSalesNumber()
+
+
 
     #RETRIEVE TRANSACTION
     def retrieveTransactions(self):
@@ -817,7 +831,7 @@ class Ui_MainWindow(object):
                  self.transactionsButton.setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(117, 117, 117); border: 0px solid;")
             AllItems = [self.sortComboBox.itemText(i) for i in range(self.sortComboBox.count())]
             for item in self.sortItems:
-                if item in AllItems:
+                if item in AllItems:                                                                                   
                      continue
                 self.sortComboBox.addItem(item)
             
@@ -833,19 +847,17 @@ class Ui_MainWindow(object):
                 self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
                 self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
                 self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
-                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
+                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6] * data[5])))
                 self.btn_sell = QtWidgets.QPushButton('')
                 self.btn_sell.setIcon(QtGui.QIcon('edit_icon.png'))
                 self.btn_sell.setStyleSheet("border: none")
                 self.btn_sell.setIconSize(QtCore.QSize(20,20))
-                self.btn_sell.setFocusPolicy(QtCore.Qt.NoFocus)
                 self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
                 self.tableWidget.setCellWidget(row,4,self.btn_sell)
                 self.btn_remove = QtWidgets.QPushButton('')
                 self.btn_remove.setIcon(QtGui.QIcon('remove_icon.png'))
                 self.btn_remove.setStyleSheet("border: none")
                 self.btn_remove.setIconSize(QtCore.QSize(20,20))
-                self.btn_remove.setFocusPolicy(QtCore.Qt.NoFocus)
                 self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
                 self.tableWidget.setCellWidget(row,5,self.btn_remove)            
                 row = row+1
@@ -858,11 +870,11 @@ class Ui_MainWindow(object):
 
 
     def sortClicked(self):
-        if self.sortComboBox.currentText() == "All":
+        if self.sortComboBox.currentText() == "January":
             query = "SELECT * FROM tblsales"
             self.mycursor.execute(query)
         else:
-            query = "SELECT tblsales.salesID, tblsales.transactionID, tblsales.product, tblsales.description, tblsales.customer_name, tblsales.quantity, tblsales.unitPrice FROM tblsales INNER JOIN tbltransaction ON tblsales.salesID = tbltransaction.salesID WHERE tbltransaction.date ='"+self.sortComboBox.currentText()+"'"
+            query = "SELECT tblsales.salesID, tblsales.transactionID, tblsales.product, tblsales.description, tblsales.customer_name, tblsales.quantity, tblsales.unitPrice FROM tblsales INNER JOIN tbltransaction ON tblsales.transactionID = tbltransaction.transactionID WHERE tbltransaction.date ='"+self.sortComboBox.currentText()+"'"
             self.mycursor.execute(query)    
 
         row = 0
@@ -872,18 +884,16 @@ class Ui_MainWindow(object):
                 self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(str(data[0])))
                 self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(data[2]))
                 self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(data[4]))
-                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6]))) 
+                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(str(data[6] * data[5])))
                 self.btn_sell = QtWidgets.QPushButton('')
                 self.btn_sell.setIcon(QtGui.QIcon('edit_icon.png'))
                 self.btn_sell.setStyleSheet("border: none")
                 self.btn_sell.setIconSize(QtCore.QSize(20,20))
-                self.btn_sell.setFocusPolicy(QtCore.Qt.NoFocus)
                 self.btn_sell.clicked.connect(lambda: self.editHandleButtonClicked())
                 self.tableWidget.setCellWidget(row,4,self.btn_sell)
                 self.btn_remove = QtWidgets.QPushButton('')
                 self.btn_remove.setIcon(QtGui.QIcon('remove_icon.png'))
                 self.btn_remove.setStyleSheet("border: none")
-                self.btn_remove.setFocusPolicy(QtCore.Qt.NoFocus)
                 self.btn_remove.setIconSize(QtCore.QSize(20,20))
                 self.btn_remove.clicked.connect(lambda: self.removeHandleButtonClicked())
                 self.tableWidget.setCellWidget(row,5,self.btn_remove)            
@@ -901,6 +911,7 @@ class Ui_MainWindow(object):
             print(index.row(), index.column())
             print(self.tableWidget.item(index.row(), 0).text())
             self.transactionStackedWidget.setCurrentWidget(self.editTransactionPage)    
+            self.getDataEditDB(self.tableWidget.item(index.row(), 0).text())
             self.editTransactionUpdateButton.clicked.connect(lambda: self.editDB(self.tableWidget.item(index.row(), 0).text()))
 
 
@@ -910,7 +921,12 @@ class Ui_MainWindow(object):
         index = self.tableWidget.indexAt(button.pos())
         if index.isValid():
             print(index.row(), index.column())
+            query = "SELECT transactionID FROM tblsales WHERE salesID = '"+self.tableWidget.item(index.row(), 0).text()+"'"
+            self.mycursor.execute(query)
+            result = self.mycursor.fetchone()
+            self.removeTransactionDB(result[0])
             self.removeDB(self.tableWidget.item(index.row(), 0).text())
+            
 
 
 
@@ -919,10 +935,42 @@ class Ui_MainWindow(object):
      ##################################  
 
     def removeDB(self, id):
-          query = "DELETE FROM tblsales WHERE salesID = '"+id+"'"
-          self.mycursor.execute(query)
-          self.db.commit()
-          self.retrieveTransactions()
+        try:
+             query = "DELETE FROM tblsales WHERE salesID = '"+id+"'"
+             self.mycursor.execute(query)
+             self.db.commit()
+             self.retrieveTransactions()
+
+        except mdb.Error as e:
+             print("Error")
+
+
+
+    def removeTransactionDB(self, transactionID):
+        try:
+             query = "SELECT COUNT(transactionID) FROM tblsales WHERE transactionID = '"+str(transactionID)+"'"
+             self.mycursor.execute(query)
+             result = self.mycursor.fetchone()   
+                
+             if result[0] == 1:
+                  self.removeTransactionInstanceDB(transactionID)
+
+        except mdb.Error as e:
+             print("Error")
+
+
+
+
+    def removeTransactionInstanceDB(self, id):
+        try:
+             query = "DELETE FROM tbltransaction WHERE transactionID = '"+str(id)+"'"
+             self.mycursor.execute(query)
+             self.db.commit()
+
+        except mdb.Error as e:
+             print("Error")
+
+
 
 
     def editDB(self, id):
@@ -945,6 +993,26 @@ class Ui_MainWindow(object):
         except mdb.Error as e:
              print("Error")
 
+    
+
+    def getDataEditDB(self, id):
+        try:
+             query = "SELECT * FROM tblsales WHERE salesID = '"+id+"'"
+             self.mycursor.execute(query)
+             result = self.mycursor.fetchone()
+
+             self.editProductComboBox.setCurrentText(result[2])
+             self.editTransactionDescInput.setText(result[3])
+             self.editTransactionCustInput.setText(result[4])
+             self.editTransactionPriceInput.setText(str(result[6]))
+             self.editTransactionQuantity.setValue(result[5])
+
+        except mdb.Error as e:
+             print("Error")
+
+    
+
+
 
     def getDatesDB(self):
           query = "SELECT DISTINCT(date) FROM tbltransaction"
@@ -953,33 +1021,40 @@ class Ui_MainWindow(object):
           for date in self.mycursor:
                self.sortItems.append(date[0])
 
+
+
     def getTotalSalesDB(self):
-          query = "SELECT SUM(unitPrice) FROM tblsales"
+          query = "SELECT SUM(quantity*unitPrice) FROM tblsales"
           self.mycursor.execute(query)
           result = self.mycursor.fetchone()
+          
+          if result[0] is None:
+               self.totalSalesLabel.setText("0")
+          else:
+               self.totalSalesLabel.setText(str(result[0]))
 
-          self.totalSalesLabel.setText(str(result[0]))
+    
+    def getSalesNumber(self):
+          query = "SELECT COUNT(*) FROM tblsales"
+          self.mycursor.execute(query)
+          result = self.mycursor.fetchone()
+          
+          if result[0] is None:
+               self.totalSalesLabel_4.setText("0")
+          else:
+               self.totalSalesLabel_4.setText(str(result[0]))
 
-
-
-    ##ADD SALES TO DATABASE
-    def addSales(self):
+    def getTransactionID(self):
         try:
-             product = self.addProductComboBox.currentText()
-             description = self.addTransactionDescInput.text()
-             customer = self.addTransactionCustInput.text()
-             price = self.addTransactionPriceInput.text()
-             quantity = self.addTransactionQuantity.value()
+            query = "SELECT MAX(transactionID) FROM tbltransaction"
+            self.mycursor.execute(query)
+            result = self.mycursor.fetchone()
+            
+            if result[0] is None:
+                return 0
 
-             query = "INSERT INTO tblsales(product, description, customer_name, quantity, unitPrice) VALUES (%s,%s,%s,%s,%s)"
-             values = (product, description, customer, quantity, price)        
-             
-             self.mycursor.execute(query, values)
-             self.db.commit()
-             print("successfuly added data")
-             self.addTransaction(self.mycursor.lastrowid)
-             self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
-             self.retrieveTransactions()
+            return int(result[0])
+
 
         except mdb.Error as e:
              print("Error")
@@ -987,13 +1062,57 @@ class Ui_MainWindow(object):
 
 
 
+    ##ADD SALES TO DATABASE
+    def addSales(self):
+        try:
+             transactionID = self.getTransactionID()
+             product = self.addProductComboBox.currentText()
+             description = self.addTransactionDescInput.text()
+             customer = self.addTransactionCustInput.text()
+             price = self.addTransactionPriceInput.text()
+             quantity = self.addTransactionQuantity.value()
+             
+             if self.saleInstance == 0:
+                  transactionID = transactionID + 1
 
+             query = "INSERT INTO tblsales(transactionID, product, description, customer_name, quantity, unitPrice) VALUES (%s,%s,%s,%s,%s,%s)"
+             values = (transactionID, product, description, customer, quantity, price)        
+             
+             self.mycursor.execute(query, values)
+             self.db.commit()
+             
+             msg = QtWidgets.QMessageBox()
+             msg.setWindowTitle("Add Sales")
+             msg.setText("Sales Saved")
+             msg.setIcon(QtWidgets.QMessageBox.Information)
+             x = msg.exec_()
+
+             if self.saleInstance == 0:
+                  self.addTransaction()
+
+             self.saleInstance = self.saleInstance + 1
+
+        except mdb.Error as e:
+             print("Error")
+
+
+
+    def cancelAddSales(self):
+        self.saleInstance = 0
+        self.transactionStackedWidget.setCurrentWidget(self.viewTransactions)
+        self.retrieveTransactions()
+
+    
+
+
+
+        
     #ADD TRANSACTION TO DATABASE  
-    def addTransaction(self, saleID):
+    def addTransaction(self):
         try: 
              current_time = datetime.date.today().strftime("%b-%d-%Y")  
-             query = "INSERT INTO tbltransaction(salesID, userID, date) VALUES (%s,%s,%s)"
-             values = (saleID, self.user, current_time)        
+             query = "INSERT INTO tbltransaction(userID, date) VALUES (%s,%s)"
+             values = (self.user, current_time)        
              
              self.mycursor.execute(query, values)
              self.db.commit()
@@ -1004,13 +1123,60 @@ class Ui_MainWindow(object):
 
 
 
+    def generateReport(self):
+        filename = "report.pdf"
+        model = self.tableWidget.model()
+        columnCount = model.columnCount()-2
+
+        printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.PrinterResolution)
+        printer.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
+        printer.setPaperSize(QtPrintSupport.QPrinter.A4)
+        printer.setOrientation(QtPrintSupport.QPrinter.Landscape)
+        printer.setOutputFileName(filename)
+
+        doc = QtGui.QTextDocument()
+
+        html = """<html>
+                <head>
+                <style>
+                table{
+                }
+                table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                }
+                </style>
+                </head>"""
+        html += "<table><thead>"
+        html += "<tr>"
+        for c in range(columnCount):
+             html += "<th>{}</th>".format(model.headerData(c, QtCore.Qt.Horizontal))
+
+        html += "</tr></thead>"
+        html += "<tbody>"
+        for r in range(model.rowCount()):
+             html += "<tr>"
+             for c in range(columnCount):
+                  html += "<td>{}</td>".format(model.index(r, c).data() or "")
+             html += "</tr>"
+        html += "</tbody></table>"
+        doc.setHtml(html)
+        doc.setPageSize(QtCore.QSizeF(printer.pageRect().size()))
+        doc.print_(printer)
+        msg = QtWidgets.QMessageBox()
+        msg.setWindowTitle("Report")
+        msg.setText("Report Saved")
+        msg.setIcon(QtWidgets.QMessageBox.Information)
+        x = msg.exec_()
+
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.loginIntroLabel1.setText(_translate("MainWindow", "Sales Automation"))
-        self.loginIntroLabel2.setText(_translate("MainWindow", "Calendar Design"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "JLNeon"))
+        self.loginIntroLabel1.setText(_translate("MainWindow", "         JL Neon"))
+        self.loginIntroLabel2.setText(_translate("MainWindow", "Sales Automation"))
         self.loginIntroLabel3.setText(_translate("MainWindow", "Login to manage transactions "))
         self.loginIntroLabel4.setText(_translate("MainWindow", "efficiently"))
         self.usernameField.setPlaceholderText(_translate("MainWindow", " Username"))
@@ -1020,19 +1186,18 @@ class Ui_MainWindow(object):
         self.loginButton.setText(_translate("MainWindow", "SIGN IN"))
         self.label.setText(_translate("MainWindow", "JLNeon"))
         self.dashboardButton.setText(_translate("MainWindow", "Dashboard"))
-        self.transactionsButton.setText(_translate("MainWindow", "Transactions"))
+        self.transactionsButton.setText(_translate("MainWindow", "Sales"))
         self.sideMenuLabel.setText(_translate("MainWindow", "Menu"))
         self.dashboardLabel.setText(_translate("MainWindow", "Dashboard"))
         self.totalSalesLabel2.setText(_translate("MainWindow", "Total Sales"))
-        self.totalSalesLabel.setText(_translate("MainWindow", "2,799"))
-        self.totalSalesLabel2_4.setText(_translate("MainWindow", "Total Sale Transaction"))
+        self.totalSalesLabel.setText(_translate("MainWindow", "0"))
+        self.totalSalesLabel2_4.setText(_translate("MainWindow", "Number of Sales"))
         self.totalSalesLabel_4.setText(_translate("MainWindow", "3"))
         self.dashboardMonthlySalesLabel.setText(_translate("MainWindow", "Monthly Sales"))
         self.salesMonth1Label.setText(_translate("MainWindow", "Monthly Sales"))
         self.dashboardMonthLabel.setText(_translate("MainWindow", "Month"))
         self.dashboardSalesLabel.setText(_translate("MainWindow", "Sales"))
         self.dashboardSales.setText(_translate("MainWindow", "Monthly Sales"))
-        self.generateReportButton.setText(_translate("MainWindow", "Generate Report"))
         self.addTransactionButton.setText(_translate("MainWindow", "Add Transaction"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "ID"))
@@ -1041,14 +1206,15 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Customer"))
         item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Price"))
+        item.setText(_translate("MainWindow", "Amount"))
         item = self.tableWidget.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "   Edit"))
         item = self.tableWidget.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Remove"))
-        self.transactionLabel.setText(_translate("MainWindow", "Transactions"))
+        self.transactionLabel.setText(_translate("MainWindow", "Sales"))
         self.sortLabel.setText(_translate("MainWindow", "Sort date"))
-        self.sortComboBox.setItemText(0, _translate("MainWindow", "All"))
+        self.sortComboBox.setItemText(0, _translate("MainWindow", "January"))
+        self.generateReportButton.setText(_translate("MainWindow", " Generate Report"))
         self.addTransactionLabel.setText(_translate("MainWindow", "Add Transaction"))
         self.addProductComboBox.setCurrentText(_translate("MainWindow", "Tarpaulin Printing"))
         self.addProductComboBox.setItemText(0, _translate("MainWindow", "Tarpaulin Printing"))

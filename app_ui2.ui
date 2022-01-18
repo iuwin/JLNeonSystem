@@ -1046,36 +1046,6 @@ QPushButton:hover#transactionsButton{
             <string/>
            </property>
           </widget>
-          <widget class="QPushButton" name="generateReportButton">
-           <property name="geometry">
-            <rect>
-             <x>40</x>
-             <y>220</y>
-             <width>111</width>
-             <height>31</height>
-            </rect>
-           </property>
-           <property name="font">
-            <font>
-             <family>Verdana</family>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton#generateReportButton{
-	color: rgb(255, 255, 255);
-	background-color: rgb(102, 150, 200);
-	border: 0px solid;
-	border-radius: 5px;
-}
-
-QPushButton:hover#generateReportButton{
-	background-color: rgb(113, 167, 221)
-}</string>
-           </property>
-           <property name="text">
-            <string>Generate Report</string>
-           </property>
-          </widget>
          </widget>
         </widget>
         <widget class="QWidget" name="transactionScreen">
@@ -1359,9 +1329,39 @@ QPushButton:hover#addTransactionButton{
              </property>
              <item>
               <property name="text">
-               <string>By Date</string>
+               <string>All</string>
               </property>
              </item>
+            </widget>
+            <widget class="QPushButton" name="generateReportButton">
+             <property name="geometry">
+              <rect>
+               <x>510</x>
+               <y>55</y>
+               <width>111</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton#generateReportButton{
+	color: rgb(255, 255, 255);
+	background-color: rgb(102, 150, 200);
+	border: 0px solid;
+	border-radius: 5px;
+}
+
+QPushButton:hover#generateReportButton{
+	background-color: rgb(113, 167, 221)
+}</string>
+             </property>
+             <property name="text">
+              <string>Generate Report</string>
+             </property>
             </widget>
            </widget>
           </widget>
